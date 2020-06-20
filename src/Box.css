@@ -1,0 +1,15 @@
+.box {
+    text-align: center;
+    width: 200px;
+    height: 200px;
+}
+
+.box button {
+    width: 25%;
+    height: 25%;
+    margin: 0 auto;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+}
+
