@@ -4,7 +4,9 @@ import Box from './Box.js'
 
 //const irredCoeffs = [1, 0, 0, 0, 1, 1, 0, 1, 1];
 const irredCoeffs = [1, 1, 0, 1, 1, 0, 0, 0];
+//In generating the mult tables we are assuming this already
 const modulo = [1, 0, 0, 1];
+
 
 
 const util = {
@@ -28,13 +30,19 @@ const util = {
         for(let i in a)
             out[i] = a[i]&b[i];
         return out;
-    }
+    },
+    addVec: (a, b, fn) => {
+        let out = [];
+        for(let i in a)
+            out[i] = fn(a[i], b[i]);
+        return out;
+    },
 }
 
 
 
 function getF8MultTable(n) {
-    let transpose = [];
+    const transpose = [];
     let poly = util.toBinArray(n);
     transpose[0] = poly.slice(0);
     for(let i=1; i<8; i++) {
@@ -60,64 +68,12 @@ function getF8MultTable(n) {
             let out = [0,0,0,0,0,0,0,0];
             for(let i=0; i<8; i++) {
                 if(arr[i])
-                    out[i] = util.xorVec(arr, transpose[i]);
+                    out = util.xorVec(out, transpose[i]);
             }
             return util.toInt(out);
         }
     };
 }
-
-
-class MultTableF8 extends Component {
-    constructor(props) {
-        super(props);
-
-        this.transpose = [];
-        this.poly = util.toBinArray(props.n);
-        this.transpose[0] = this.poly.slice(0);
-        for(let i=1; i<8; i++) {
-            this.poly.unshift(0);
-            if(this.poly.pop() === 1) {
-                this.poly = this.poly.map((k, index) => (k + irredCoeffs[index]) % 2);
-            }
-            this.transpose[i] = this.poly.slice(0);
-        }
-
-        this.table = new Array(8);
-        for(let i=0; i<8; i++) {
-            this.table[i] = new Array(8);
-            for(let j=0; j<8; j++) {
-                this.table[i][j] = this.transpose[j][i];
-            }
-        }
-
-        this.s = this.table.map(k => k.join(' & ')).join('\\\\\n');
-    }
-
-    times(arr) {
-        //We can expect arr to be an array of 1s and 0s
-        //So can just condition on the value
-
-        let out = [0,0,0,0,0,0,0,0];
-        for(let i=0; i<8; i++) {
-            if(arr[i])
-                out[i] = util.xorVec(arr, this.transpose[i]);
-        }
-        return out;
-    }
-
-    render() {
-        return (
-            <p>
-                \({'\{' + this.props.n.toString(16) + '\}: '}
-                    \begin{'{'}bmatrix{'}'}
-                        {this.s}
-                    \end{'{'}bmatrix{'}'}\)
-            </p>
-    );}
-}
-
-
 
 function MixColumnsPage(props) {
     //We assume we have the polynomial with greatest power of x first
@@ -130,8 +86,14 @@ function MixColumnsPage(props) {
             table[j][i] = rpoly[(3*i+j) % 4];
         }
     }
+    const transp = new Array(4);
+    for(let i=0; i<4; i++) {
+        transp[i] = new Array(4);
+        for(let j=0; j<4; j++) {
+            transp[i][j] = table[j][i];
+        }
+    }
     const s = table.map(k => '\\{' + k.join('\\} & \\{') + '\\}').join('\\\\\n');
-
     const multTables = poly.reduce((acc, curr) => {
         if(acc && !(acc.hasOwnProperty(curr))) {
             acc[curr] = getF8MultTable(curr);
@@ -139,6 +101,26 @@ function MixColumnsPage(props) {
         return acc;
     }, {});
 
+    console.log(multTables[3].times(2))
+
+    const output = new Array(props.input.length);
+
+    //For each col we want to calculate (=col in output = col in right matrix)
+    for(let k=0; k<4; k++) {
+        let column = [0, 0, 0, 0];
+        //For each col in the left matrix
+        for(let j=0; j<4; j++) {
+            column = util.addVec(
+                column, 
+                transp[j].map(n => 
+                    multTables[n].times(props.input[4*j + k])
+                ),
+                (a, b) => a^b
+            );
+        }
+        for(let l=0; l<4; l++)
+            output[4*l + k] = column[l];
+    }
 
     return (
         <div>
@@ -170,6 +152,7 @@ function MixColumnsPage(props) {
 
             <Box key={'in'} data={props.input} />
             <h1>sep text</h1>
+            <Box key={'out'} data={output} />
         </div>
     );
 }
