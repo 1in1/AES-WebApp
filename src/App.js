@@ -24,7 +24,7 @@ function App() {
   document.head.appendChild(MathJaxInclude);
 
   return (
-    <div>
+    <div id='sub'>
       <FirstPage className={'page'} input={test_data} />
     </div>
     /*

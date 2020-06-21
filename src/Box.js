@@ -4,7 +4,7 @@ import './Box.css'
 
 
 const Square = (props) => (
-    <button>{props.value.toString(16)}</button>
+    <div className='cell'>{props.value.toString(16)}</div>
 );
 
 function Box (props) {
