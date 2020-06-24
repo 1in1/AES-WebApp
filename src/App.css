@@ -35,8 +35,9 @@
 
 
 .page {
+  margin: 0 auto;
   text-align: center;
-  width: 100%;
+  max-width: 800px;
 }
 
 
@@ -49,12 +50,25 @@
   text-align: center;
   display: block;
 }
-
 .inverse label {
   padding: 10px;
 }
 
+.affine {
+  text-align: center;
+  display: block;
+}
+.affine label {
+  padding: 10px;
+}
 
+.multTableWidget {
+  text-align: center;
+  display: block;
+}
+.multTableWidget label {
+  padding: 10px;
+}
 
 .boxContainerOuter {
   display: block;

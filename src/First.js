@@ -15,7 +15,7 @@ function FirstPage(props) {
       <Latex displayMode={true}>
         {'$$\\mathbb{F}(2^8) \\cong \\frac{\\mathbb{F}(2)[x]}{(x^8 + x^4 + x^3 + x + 1)}$$'}
       </Latex>
-      } over={<p>Why does this work? <Latex>{'$\\mathbb{F}(2)$'}</Latex> is a field by definition, so its polynomial ring is a Euclidian domain. If we can quotient by a polynomial of order 8, then all elements in the quotient have a unique representative of order strictly less than 8, so the quotient ring will be of the correct order. Since <Latex>$ x^8 + x^4 + x^3 + x + 1 $</Latex> is a prime element in this ring, this quotient is therefore an integral domain. All finite integral domains are fields, and finite fields are unique up to isomorphism, and so this is the field we want.</p>} />
+      } over={<p>Why does this work? <Latex>{'$\\mathbb{F}(2)$'}</Latex> is a field by definition, so its polynomial ring is a Euclidian domain. If we can quotient by a polynomial of order 8, then all elements in the quotient have a unique non-zero representative of order strictly less than 8, so the quotient ring will be of the correct order. Since <Latex>$ x^8 + x^4 + x^3 + x + 1 $</Latex> is a prime element in this ring, this quotient is an integral domain. All finite integral domains are fields, and finite fields are unique up to isomorphism, and so this is the field we want.</p>} />
 
       <p>It turns out this is a particularly nice object to study for a couple of reasons. Firstly, and most obviously, the width of a byte is 8, so the field has as many elements as there are possible bytes. Via the isomorphism above, we can represent each element as a polynomial of degree strictly less than 8, with coefficients in <Latex>{'$\\mathbb{F}(2)$'}</Latex>, which may be stored as a single byte. Here we will represent numbers in this field like this, with the bytes in green hexadecimal, e.g.</p>
 
@@ -31,7 +31,7 @@ function FirstPage(props) {
         </div>
       </div>
       
-      <p>As with all encryption schemes, we begin with two pieces of information: the <i>plaintext</i> and the <i>key</i>. The cipher consist of several rounds of the same four basic operations. To this end, we expand a given key into several, and one is used for each round - this is called <i>key expansion</i>, and produces a set of <i>round keys</i>. Each round consists of the steps:
+      <p>As with all encryption schemes, we begin with two pieces of information: the <i>plaintext</i> and the <i>key</i>. The cipher consist of several rounds of the same four basic operations. To this end, we expand a given key into several, and one is used for each round - this is called <i>key expansion</i>, and produces a set of <i>round keys</i>. Each round consists of the steps: (we are just filling space here lol)
       </p>
       <div id='steps'>
         <div className='step'>Substitute Bytes</div>

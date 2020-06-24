@@ -49,7 +49,7 @@ function MultTableDraw(props) {
 function MultTableWidget(props) {
     const [val, setVal] = useState({text: '', valid: false});
     return (
-        <div className='multTableWidget'>
+        <div class='multTableWidget'>
             <label for='multTableInput'>Try it - matrix for: </label>
             <input 
                 type='text' 

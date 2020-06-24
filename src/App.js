@@ -9,6 +9,7 @@ import AddRoundKeyPage from './AddRoundKey.js';
 
 
 function App() {
+  document.title = 'Interactive AES - asg58'
   const KatexCssInclude = document.createElement('link');
   KatexCssInclude.href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css";
   KatexCssInclude.rel="stylesheet";
