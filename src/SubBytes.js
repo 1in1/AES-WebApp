@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Box from './Box.js'
 import InverseWidget from './Inverse.js'
 import EditBox from './EditBox.js'
@@ -11,26 +11,27 @@ const subs = [0x63 ,0x7c ,0x77 ,0x7b ,0xf2 ,0x6b ,0x6f ,0xc5 ,0x30 ,0x01 ,0x67 ,
 function SubBytesPage(props) {
     const [editOpen, setEditOpen] = useState(false);
     const [input, setInput] = useState(props.input);
-    
+    const Latex = props.tex;
+
 
     return (
         <div className='page'>
             <h2>Substitute Bytes</h2>
-            <p>The first step in a round of Rijndael is to swap each byte with another. This is conceptually done in two operations. Let \( \color{'{'}green{'}'}{'\\{p\\}'} \) be our input.</p>
-            <p>First, we substitute this with its multiplicative inverse in \( \mathbb{'{'}F{'}'}(2^8)\). Of course, \(\color{'{'}green{'}'}{'\\{'}00{'\\}'} \) has no such inverse, but we define this to be self-inverse to make everything work.</p>
+            <p>The first step in a round of Rijndael is to swap each byte with another. This is conceptually done in two operations. Let <Latex>{'$\\color{green}{\\{p\\}}$'}</Latex> be our input.</p>
+            <p>First, we substitute this with its multiplicative inverse in <Latex>{'$ \\mathbb{F}(2^8) $. Of course, $\\color{green}{\\{00\\}}$'}</Latex> has no such inverse, but we define this to be self-inverse to make everything work.</p>
 
             <InverseWidget default={'00'} />
 
-            <p>Let \({'{\\color{green}\\{p\\}^{-1}} = {\\color{green}\\{q\\}}'}\). Then, we apply a specific affine transformation. This transformation is best understood as taking the sum of rotations of the byte representing the number, with a constant at the end. The matrix below shows the transformation with respect to the natural basis \( {'\\{'}1, x, x^2, ..., x^7{'\\}'} = {'\\{'}01, 02, 04, ..., 80{'\\}'}\) of \(\mathbb{'{'}F{'}'}(2^8)\) when considered a vector space over \(\mathbb{'{F}'}(2)\). </p>
+            <p><Latex>{'Let $ {\\color{green}\\{p\\}^{-1}} = {\\color{green}\\{q\\}} $'}</Latex>. Then, we apply a specific affine transformation. This transformation is best understood as taking the sum of rotations of the byte representing the number, with a constant at the end. The matrix below shows the transformation with respect to the natural (when considered a vector space over <Latex>{'$\\mathbb{F}(2)$'}</Latex>) basis <Latex>{'$ \\{1, x, x^2, ..., x^7\\} = \\{01, 02, 04, ..., 80\\}$ of $\\mathbb{F}(2^8)$.'}</Latex></p>
 
-            <p>\[
-                \begin{'{'}bmatrix{'}'} r_0\\r_1\\r_2\\r_3\\r_4\\r_5\\r_6\\r_7 \end{'{'}bmatrix{'}'}
+            <Latex displayMode={true}>{`$$
+                \\begin{bmatrix} r_0\\\\r_1\\\\r_2\\\\r_3\\\\r_4\\\\r_5\\\\r_6\\\\r_7 \\end{bmatrix}
                 =
-                \begin{'{'}bmatrix{'}'} 1&0&0&0&1&1&1&1\\1&1&0&0&0&1&1&1\\1&1&1&0&0&0&1&1&\\1&1&1&1&0&0&0&1\\1&1&1&1&1&0&0&0\\0&1&1&1&1&1&0&0\\0&0&1&1&1&1&1&0\\0&0&0&1&1&1&1&1 \end{'{'}bmatrix{'}'}
-                \begin{'{'}bmatrix{'}'} q_0\\q_1\\q_2\\q_3\\q_4\\q_5\\q_6\\q_7 \end{'{'}bmatrix{'}'}
+                \\begin{bmatrix} 1&0&0&0&1&1&1&1\\\\1&1&0&0&0&1&1&1\\\\1&1&1&0&0&0&1&1&\\\\1&1&1&1&0&0&0&1\\\\1&1&1&1&1&0&0&0\\\\0&1&1&1&1&1&0&0\\\\0&0&1&1&1&1&1&0\\\\0&0&0&1&1&1&1&1 \\end{bmatrix}
+                \\begin{bmatrix} q_0\\\\q_1\\\\q_2\\\\q_3\\\\q_4\\\\q_5\\\\q_6\\\\q_7 \\end{bmatrix}
                 +
-                \begin{'{'}bmatrix{'}'} 1\\1\\0\\0\\0\\1\\1\\0 \end{'{'}bmatrix{'}'}
-            \]</p>
+                \\begin{bmatrix} 1\\\\1\\\\0\\\\0\\\\0\\\\1\\\\1\\\\0 \\end{bmatrix}
+            $$`}</Latex>
 
             <p>The widget below implements this transformation.</p>
             <ATWidget default={'00'} />

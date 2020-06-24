@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import util from './Utility.js'
 
 const cols = [[1, 1, 1, 1, 1, 0, 0, 0], [0, 1, 1, 1, 1, 1, 0, 0], [0, 0, 1, 1, 1, 1, 1, 0], [0, 0, 0, 1, 1, 1, 1, 1], [1, 0, 0, 0, 1, 1, 1, 1], [1, 1, 0, 0, 0, 1, 1, 1], [1, 1, 1, 0, 0, 0, 1, 1], [1, 1, 1, 1, 0, 0, 0, 1]];
 
 
 function ATDraw(props) {
-    useEffect(() => window.MathJax.typeset(document.getElementsByClassName('affine')));
+    const Latex = require('react-latex');
+    
     const input = util.toBinArray(props.value);
     let partial = [0,0,0,0,0,0,0,0];
     for(let i in input) {
@@ -15,19 +16,19 @@ function ATDraw(props) {
     }
     const output = util.xorVec(partial, [1, 1, 0, 0, 0, 1, 1, 0]);
     return (
-        <p>\[
-            \begin{'{'}bmatrix{'}'} 1&0&0&0&1&1&1&1\\1&1&0&0&0&1&1&1\\1&1&1&0&0&0&1&1&\\1&1&1&1&0&0&0&1\\1&1&1&1&1&0&0&0\\0&1&1&1&1&1&0&0\\0&0&1&1&1&1&1&0\\0&0&0&1&1&1&1&1 \end{'{'}bmatrix{'}'}
-            \begin{'{'}bmatrix{'}'} {input.join('\\\\')} \end{'{'}bmatrix{'}'}
+        <Latex>{`$$
+            \\begin{bmatrix} 1&0&0&0&1&1&1&1\\\\1&1&0&0&0&1&1&1\\\\1&1&1&0&0&0&1&1&\\\\1&1&1&1&0&0&0&1\\\\1&1&1&1&1&0&0&0\\\\0&1&1&1&1&1&0&0\\\\0&0&1&1&1&1&1&0\\\\0&0&0&1&1&1&1&1 \\end{bmatrix}
+            \\begin{bmatrix}`+ input.join('\\\\') + `\\end{bmatrix}
             +
-            \begin{'{bmatrix}'} 1\\1\\0\\0\\0\\1\\1\\0 \end{'{bmatrix}'}
+            \\begin{bmatrix} 1\\\\1\\\\0\\\\0\\\\0\\\\1\\\\1\\\\0 \\end{bmatrix}
             =
-            \begin{'{bmatrix}'} {partial.join('\\\\')} \end{'{bmatrix}'}
+            \\begin{bmatrix}` + partial.join('\\\\') + `\\end{bmatrix}
             +
-            \begin{'{bmatrix}'} 1\\1\\0\\0\\0\\1\\1\\0 \end{'{bmatrix}'}
+            \\begin{bmatrix} 1\\\\1\\\\0\\\\0\\\\0\\\\1\\\\1\\\\0 \\end{bmatrix}
             =
-            \begin{'{bmatrix}'} {output.join('\\\\')} \end{'{bmatrix}'}
-            = {util.toInt(output).toString(16)}
-        \]</p>
+            \\begin{bmatrix}` + output.join('\\\\') + `\\end{bmatrix}
+            = ` + util.toInt(output).toString(16) + `
+        $$`}</Latex>
     );
 }
 

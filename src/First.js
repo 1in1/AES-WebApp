@@ -1,43 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Box from './Box.js'
 import './First.css'
-const Latex = require('react-latex');
-
-//This is an ugly (hopefully temporary solution) until I can get MathJax working
-//with Node nicely
-function Reveal(props) {
-  useEffect(() => window.MathJax.typeset(document.getElementsByClassName('reveal')));
-  return(<div class='reveal'>{props.over}</div>);
-}
-
-function HoverBox(props) {
-  const [isShown, setIsShown] = useState(false);
-  return (
-    <div class='hoverable' onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
-      {props.under}
-      {isShown && <div class='reveal'><Tex>{props.over}</Tex></div>}
-    </div>
-  );
-}
+import HoverBox from './HoverBox.js'
 
 function FirstPage(props) {
+  const Latex = props.tex;
 
   return (
     <div className='page'>
-      <h1>AES stuff</h1>
       <h2>Prerequisites</h2>
-      <p>For Rijndael, we work in the finite field of order \( 2^8 = 256\), which we denote \( \mathbb{'{'}F{'}'}(2^8)\) throughout. This is a pretty large object to try and think about, so it will help us to instead consider an isomorphism to a slightly nicer object. The authors of Rijndael chose to use:</p>
-      <Tex>This is a $test$ my guy</Tex>
-      <HoverBox under={
-      <p>\[
-        \mathbb{'{F}'}(2^8) \cong \frac{'{'}\mathbb{'{F}'}(2)[x]{'}'}{'{'}(x^8 + x^4 + x^3 + x + 1){'}'}
-      \]</p>
-      } over={<p>Why does this work? $ \mathbb{'{'}F{'}'}(2) $ is a field by definition, so its polynomial ring is a Euclidian domain. If we can quotient by a polynomial of order 8, then all elements in the quotient have a unique representative of order strictly less than 8, so the quotient ring will be of the correct order. Since $ x^8 + x^4 + x^3 + x + 1 $ is a prime element in this ring, this quotient is therefore an integral domain. All finite integral domains are fields, and finite fields are unique up to isomorphism, and so this is the field we want.</p>} />
+      <p>For Rijndael, we work in the finite field of order <Latex>$ 2^8 = 256$</Latex>, which we denote <Latex>{'$\\mathbb{F}(2^8)$'}</Latex> throughout. This is a pretty large object to try and think about, so it will help us to instead consider an isomorphism to a slightly nicer object. The authors of Rijndael chose to use:</p>
 
-      <p>It turns out this is a particularly nice object to study for a couple of reasons. Firstly, and most obviously, the width of a byte is 8, so the field has as many elements as there are possible bytes. Via the isomorphism above, we can represent each element as a polynomial of degree strictly less than 8, with coefficients in \(\mathbb{'{'}F{'}'}(2)\), which may be stored as a single byte. Here we will represent numbers in this field like this, with the bytes in green hexadecimal, e.g.
-      \[
-        x^5 + x^3 + x^2 = {'{\\color{green}\\{1c\\}}'}.
-      \]</p>
+      <HoverBox under={
+      <Latex displayMode={true}>
+        {'$$\\mathbb{F}(2^8) \\cong \\frac{\\mathbb{F}(2)[x]}{(x^8 + x^4 + x^3 + x + 1)}$$'}
+      </Latex>
+      } over={<p>Why does this work? <Latex>{'$\\mathbb{F}(2)$'}</Latex> is a field by definition, so its polynomial ring is a Euclidian domain. If we can quotient by a polynomial of order 8, then all elements in the quotient have a unique representative of order strictly less than 8, so the quotient ring will be of the correct order. Since <Latex>$ x^8 + x^4 + x^3 + x + 1 $</Latex> is a prime element in this ring, this quotient is therefore an integral domain. All finite integral domains are fields, and finite fields are unique up to isomorphism, and so this is the field we want.</p>} />
+
+      <p>It turns out this is a particularly nice object to study for a couple of reasons. Firstly, and most obviously, the width of a byte is 8, so the field has as many elements as there are possible bytes. Via the isomorphism above, we can represent each element as a polynomial of degree strictly less than 8, with coefficients in <Latex>{'$\\mathbb{F}(2)$'}</Latex>, which may be stored as a single byte. Here we will represent numbers in this field like this, with the bytes in green hexadecimal, e.g.</p>
+
+      <Latex displayMode={true}>{'$x^5 + x^3 + x^2 = {\\color{green}\\{1c\\}}$'}</Latex>
 
       <p>We also note that each element is its own additive inverse; this is again immediately clear by thinking about the isomorphism.</p>
 
