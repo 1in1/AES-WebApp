@@ -9,7 +9,8 @@
 /coverage
 
 # production
-/build
+#Not sure how wise this is but let's see
+#/build
 
 # misc
 .DS_Store
