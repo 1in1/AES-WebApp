@@ -19,7 +19,7 @@ function AddRoundKeyPage(props) {
     return (
         <div className='page'>
             <h2>Add Round Key</h2>
-            <p>One very easy final step - we simply need to xor the state with the round key we generated. Both the input and round key boxes are editable here!</p>
+            <p>One very easy final step - we simply need to XOR the state with the round key we generated. Both the input and round key boxes are editable here!</p>
 
             <div className='boxContainerOuter'>
                 <div className='boxContainerInner' onClick={() => setEditInputOpen(true)}>State:

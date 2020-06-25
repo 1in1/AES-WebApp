@@ -3,13 +3,10 @@ import Box from './Box.js'
 import EditBox from './EditBox.js'
 
 
-const init_data = [0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15];
-
-
 function ShiftRowsPage(props) {
     const Latex = props.tex;
     const [editOpen, setEditOpen] = useState(false);
-    const [input, setInput] = useState(init_data);
+    const [input, setInput] = useState(props.input);
 
     const getOutput = (a) => {
         const output = Array(a.length);

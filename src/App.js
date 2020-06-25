@@ -18,21 +18,22 @@ function App() {
 
   //We are building the state matrix the wrong way round
   //Just fill it out and transpose for the sake of sanity..
-  const test_data = [0x8e, 0x9f, 0xf1, 0xc6, 0x4d, 0xdc, 0x01, 0xc6, 0xa1, 0x58, 0x01, 0xc6, 0xbc, 0x9d, 0x01, 0xc6];
-  const test_key = [0xdb, 0xf2, 0x01, 0xc6, 0x13, 0x0a, 0x01, 0xc6, 0x53, 0x22, 0x01, 0xc6, 0x45, 0x5c, 0x01, 0xc6];
+
+  //Should be 257, but threw an error once and I'm cautious now...
+  const data = () => Array.from({length: 16}, () => Math.floor(Math.random() * 256));
 
   const [page, setPage] = useState('about');
   const pageObjects = { 
     'about': <AboutPage className={'page'} tex={Latex} />,
-    'first': <FirstPage className={'page'} input={test_data} tex={Latex} />,
-    'subBytes': <SubBytesPage className={'page'} input={test_data} tex={Latex} />,
-    'shiftRows': <ShiftRowsPage className={'page'} input={test_data} tex={Latex} />,
-    'mixCols': <MixColumnsPage className={'page'} input={test_data} tex={Latex} />,
-    'addRoundKey': <AddRoundKeyPage className={'page'} input={{data: test_data, roundKey: test_key}} tex={Latex} />
+    'first': <FirstPage className={'page'} input={data()} tex={Latex} />,
+    'subBytes': <SubBytesPage className={'page'} input={data()} tex={Latex} />,
+    'shiftRows': <ShiftRowsPage className={'page'} input={data()} tex={Latex} />,
+    'mixCols': <MixColumnsPage className={'page'} input={data()} tex={Latex} />,
+    'addRoundKey': <AddRoundKeyPage className={'page'} input={{data: data(), roundKey: data()}} tex={Latex} />
   };
 
   return (
-    <div id='sub'>
+    <>
       <div class='topNav'>
         <div class='navElt' onClick={() => setPage('about')}>About</div>
         <div class='navElt' onClick={() => setPage('first')}>Prerequisites</div>
@@ -44,7 +45,7 @@ function App() {
 
       {<div id='main'>{pageObjects[page]}</div>}
       
-    </div>
+    </>
   );
 }
 

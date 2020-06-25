@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Box from './Box.js'
 import EditBox from './EditBox.js'
 import util from './Utility.js'
+import HoverBox from './HoverBox.js';
 
 
 function getF8MultTable(n) {
@@ -140,14 +141,23 @@ function MixColumnsPage(props) {
                 ).join(' + ') + '.$$'
             }</Latex></p>
 
-            <p>Of course, this involves multiplying elements in <Latex>{'$\\mathbb{F}(2^8)$'}</Latex>, which is certainly not trivial, so we need to get hold of the multiplication tables for each coefficient. (Why for the coefficients? There are only four of them, and once calculated once, they can be reused). It is fairly easy to find the representation of an element of <Latex>{'$\\mathbb{F}(2^8)$'}</Latex> as a matrix acting on the vector space <Latex>{'$\\mathbb{F}(2^8)^8$, by considering its action on the standard basis $\\{1, x, ..., x^7\\}$'}</Latex>. (Talk about the module). You can enter such an element into the box below to see this representation of it.</p>
+
+            <HoverBox under={
+            <p>Of course, this involves multiplying elements in <Latex>{'$\\mathbb{F}(2^8)$'}</Latex>, which is certainly not trivial, so we need to get hold of the multiplication tables for each coefficient. It is fairly easy to find the representation of an element of <Latex>{'$\\mathbb{F}(2^8)$'}</Latex> as a matrix acting on the vector space <Latex>{'$\\mathbb{F}(2)^8$, by considering its action on the standard basis $\\{1, x, ..., x^7\\}$'}</Latex>. You can enter such an element into the box below to see this representation of it.</p>
+            }
+            over={
+                <>
+                    <p>Why for the coefficients? There are only four of them, and once calculated a single time, they can be reused. Along with the observations below, it should be pretty clear that in all but the most memory-sensitive situations, we should be precalculating these three tables.</p>
+                    <p>See the SubBytes page for an expalanation of why this is a natural basis.</p>
+                </>
+            } />
 
 
             <MultTableWidget default='00' tex={props.tex} />
 
             <p>Notice that the coefficients of <Latex>$a$</Latex> make for some very easy calculations! Not only is the identity repeated, <Latex>{'$ {\\color{green}\\{03\\}}$'}</Latex> is just the sum of the other two.</p>
             
-            <p>Now the particular choice of quotient ring <Latex>$R$</Latex> is very nice - since we saw before that all elements in <Latex>{'$\\mathbb{F}(2^8)$'}</Latex> are additively self-inverse, taking this quotient is the same as setting <Latex>{'$ {\\color{green}\\{01\\}}={\\color{green}\\{01\\}}y^4$'}</Latex>, and so the action on each basis element of <Latex>$R$</Latex> is very easy to work out: the vector expression representing the action of <Latex>$a$</Latex> with respect to the basis <Latex>{'$\\{{\\color{green}\\{01\\}} , ..., {\\color{green}\\{01\\}}y^3\\}$'}</Latex> is:
+            <p>Now the particular choice of quotient ring <Latex>$R$</Latex> is very nice - since we saw before that all elements in <Latex>{'$\\mathbb{F}(2^8)$'}</Latex> are additively self-inverse, taking this quotient is the same as setting <Latex>{'$ {\\color{green}\\{01\\}}={\\color{green}\\{01\\}}y^4$'}</Latex>, and so the action on each basis element of <Latex>$R$</Latex> is very easy to work out: the vector expression representing the action of <Latex>$a$</Latex> on <Latex>$R$</Latex> viewed as an <Latex>{'$\\mathbb{F}(2^8)$'}</Latex> vector space with respect to the basis <Latex>{'$\\{{\\color{green}\\{01\\}} , ..., {\\color{green}\\{01\\}}y^3\\}$'}</Latex> is:
                 <Latex displayMode={true}>{`$$
                     \\begin{bmatrix} b_0\\\\b_1\\\\b_2\\\\b_3 \\end{bmatrix}
                     =
