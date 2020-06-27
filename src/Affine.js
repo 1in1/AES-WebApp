@@ -27,7 +27,7 @@ function ATDraw(props) {
             \\begin{bmatrix} 1\\\\1\\\\0\\\\0\\\\0\\\\1\\\\1\\\\0 \\end{bmatrix}
             =
             \\begin{bmatrix}` + output.join('\\\\') + `\\end{bmatrix}
-            = ` + util.toInt(output).toString(16) + `
+            = \\text{` + util.toInt(output).toString(16) + `}
         $$`}</Latex>
     );
 }

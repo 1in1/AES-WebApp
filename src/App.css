@@ -40,6 +40,10 @@
   max-width: 800px;
 }
 
+p {
+  padding: 3px;
+}
+
 
 
 
@@ -144,6 +148,9 @@
 
 
 
+.hoverable {
+  border-right: solid #414dcc;
+}
 
 .reveal {
   background: #61dafb;

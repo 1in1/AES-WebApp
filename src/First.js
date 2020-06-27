@@ -1,6 +1,5 @@
 import React from 'react'
 import Box from './Box.js'
-import './First.css'
 import HoverBox from './HoverBox.js'
 
 function FirstPage(props) {
@@ -32,7 +31,9 @@ function FirstPage(props) {
         </div>
       </div>
       
-      <p>As with all encryption schemes, we begin with two pieces of information: the <i>plaintext</i> and the <i>key</i>. The cipher consist of several rounds of the same four basic operations. To this end, we expand a given key into several, and one is used for each round - this is called <i>key expansion</i>, and produces a set of <i>round keys</i>. Each round consists of the following steps, in the following order:</p>
+      <HoverBox under={<p>As with all encryption schemes, we begin with two pieces of information: the <i>plaintext</i> and the <i>key</i>. The cipher consist of several rounds of the same four basic operations. To this end, we expand a given key into several, and one is used for each round - this is called <i>key expansion</i>, and produces a set of <i>round keys</i>. The algorithm consists of the following steps, in the following order:</p>}
+      over={<p>Key expansion is where the 128-, 192- and 256-bit key variants of AES differ. The larger the key, the less the risk of reproducing part of the round keys from knowing part of the original key.</p>} />
+
       <div className='listContainer'><ul>
         <li>Add Round Key</li>
         <ul>
@@ -47,7 +48,7 @@ function FirstPage(props) {
         <li>Shift Rows</li>
         <li>Add Round Key</li>
       </ul></div>
-      <p>Note that we don't mix columns on the final go round; it adds no extra diffusion. Note also that 10 rounds is relatively arbitrary - extra rounds were added during the design competition as a buffer to mitigate a known attack.</p>
+      <p>Note that we don't mix columns on the final round; it adds no extra diffusion. Note also that 10 rounds is relatively arbitrary - extra rounds were added during the design competition as a buffer to mitigate a known attack.</p>
     </div>
   );
 }

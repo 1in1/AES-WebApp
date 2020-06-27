@@ -24,11 +24,11 @@ function SubBytesPage(props) {
             <InverseWidget default={'00'} />
 
             <HoverBox under={
-            <p><Latex>{'Let $ {\\color{green}\\{p\\}^{-1}} = {\\color{green}\\{q\\}} $'}</Latex>. Then, we apply a specific affine transformation <Latex>{'$ {\\color{green}\\{q\\}} \\to {\\color{green}\\{r\\}} $'}</Latex>. This transformation is best understood as taking the sum of rotations of the byte representing the number, with a constant at the end. The matrix below shows the transformation with respect to the natural basis <Latex>{'$ \\{01, 02, 04, ..., 80\\}$ of $\\mathbb{F}(2^8)$.'}</Latex></p>
+            <p><Latex>{'Let $ {\\color{green}\\{p\\}^{-1}} = {\\color{green}\\{q\\}} $'}</Latex>. Then, we apply a specific affine transformation <Latex>{'$ {\\color{green}\\{q\\}} \\mapsto {\\color{green}\\{r\\}} $'}</Latex>. This transformation is best understood as taking the sum of rotations of the byte representing the number, with a constant at the end. The matrix below shows the transformation with respect to the natural basis <Latex>{'$ \\{{\\color{green}\\{01\\}}, {\\color{green}\\{02\\}}, {\\color{green}\\{04\\}}, ..., {\\color{green}\\{80\\}}\\}$ of $\\mathbb{F}(2^8)$.'}</Latex></p>
             }
             over={
                 <>
-                    <p>Why is this a "natural choice of basis"? What we are doing here is considering <Latex>{'$\\mathbb{F}(2^8)$'}</Latex> a vector space over <Latex>{'$\\mathbb{F}(2)$'}</Latex>, using the isomorphism from earlier. The choice of basis induced by that map is <Latex>{'$ \\{1, x, x^2, ..., x^7\\} = \\{01, 02, 04, ..., 80\\}$'}</Latex>.</p>
+                    <p>Why is this a "natural basis"? What we are doing here is considering <Latex>{'$\\mathbb{F}(2^8)$'}</Latex> a vector space over <Latex>{'$\\mathbb{F}(2)$'}</Latex>, using the isomorphism from earlier. The choice of basis induced by that map is <Latex>{'$ \\{1, x, x^2, ..., x^7\\} = \\{{\\color{green}\\{01\\}}, {\\color{green}\\{02\\}}, {\\color{green}\\{04\\}}, ..., {\\color{green}\\{80\\}}\\}$'}</Latex>.</p>
                     <p>What do we mean about the "sum of rotations"? Have a think about how we might reformulate this in terms of byte rotations :) </p>
                 </>
             } />
