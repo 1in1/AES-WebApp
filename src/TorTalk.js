@@ -67,7 +67,7 @@ $ <br />
             </code>
 
             <p>This points port 80 on the public-facing tor service to port 8080 on our local server. To check what address we need to publicise, we check <code className='codePath'>/data/data/code.termux/files/usr/var/lib/tor/hidden_service/hostname</code>: in this case, we're at <code>ca2m4yev3ofg5kt6ywbtzaf2cvlfg26ox5blwvfx6dbj4g3k2iczguqd.onion</code></p>
-            <p>Now boot Tor on the phone, and we should be able to see the intro page through Tor. From here, I cloned the git repository of my page, copied the build folder to <code className='codePath'>/data/data/com.termux/files/usr/share/aes</code>, and pointed nginx at it from nginx.conf - from here, we should be good to go!</p>
+            <p>Now boot Tor on the phone, and we should be able to see the intro page through Tor. From here, I cloned the git repository of my page, copied the build folder to <code className='codePath'>/data/data/com.termux/files/usr/share/aes</code>, and pointed nginx at it from nginx.conf - from here, we should be good to go! For a proper production build, to keep the site hidden, you'd need to spend some time hardening nginx to stop it leaking info, but this is the basics done.</p>
             <p>Side note: restarting things is a bit awkward here - I found myself resorting to finding the nginx process with <code>ps -e</code> and killing it with <code>kill</code>, before restarting it manually.</p>
         </div>
         </>
