@@ -1,0 +1,42 @@
+#main {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+  padding-top: 0;
+  padding-bottom: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#back {
+  display: block;
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  font-size: x-large;
+  z-index: 10;
+}
+
+code {
+  background-color: #42f5b3;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.codeBlock {
+  display: inline-block;
+  text-align: left;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fcad03;
+}
+
+.codePath {
+  background-color: #42ddf5;
+}
+
+
+footer {
+  text-align: center;
+  padding: 10px;
+}
