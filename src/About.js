@@ -8,7 +8,7 @@ function AboutPage(props) {
             <p>This only covers the encryption direction - obviously all of these steps are invertible, and it is very easy to find their inverses. The <a href='https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf' target='_blank' rel='noopener noreferrer' >FIPS specification</a> has been my information source, and invaluable for writing this.</p>
             <p>(The site probably doesn't render very well on mobile!!)</p>
             <br /><br />
-            <p>This is also running as a Tor hidden service on an old phone of mine! It doesn't render amazingly well, but it was interesting to set up. See the 'What is this?' link below :)</p>
+            <p>This <del>is</del> was (no longer!) also running as a Tor hidden service on an old phone of mine! It doesn't render amazingly well, but it was interesting to set up. See the 'What is this?' link below :)</p>
         </div>
     );
 }

@@ -10,12 +10,12 @@ function TorTalk() {
         <div id='back'><Link to='' >Take me back</Link></div>
         <div id='main'>
             <h1>I'm a hidden service too!</h1> 
-            <p>So, your government wants to stop you viewing this random student's information page about AES. You know you're under surveilance, but you need your fix... What do you do? You go <b>darkweb</b>.</p>
+            <p>This is no longer running - the phone kicked the bucket. I'll leave this up for now though :) </p>
 
-            <p>I decided to set a parallel site up to this as a hidden service for a couple of reasons. Firstly, I bought a new phone over a year ago, and while the previous one was murdering batteries like crazy, it was perfectly fine while plugged in - so why not turn it into a server and have it do something interesting? Second, it's an opportunity to learn something cool - so this page documents the process of setting this all up.</p>
+            <p>I decided to set a parallel site up to this as a hidden service for a couple of reasons. Firstly, I bought a new phone over a year ago, and while the previous one was murdering batteries like crazy, it was perfectly fine while plugged in - so why not turn it into a server and have it do something interesting? Second, it's an opportunity to learn something - so this page documents the process of setting this all up.</p>
 
             <h2>What is Tor?</h2>
-            <p>This isn't intended to be an explanation of what Tor is or how it works, but take a look at <a href='https://2019.www.torproject.org/about/overview.html.en' target='_blank' rel='noopener noreferrer' >their website</a> for more info. <a href='https://2019.www.torproject.org/docs/onion-services' target='_blank' rel='noopener noreferrer' >Hidden services</a>, (now known as onion services) are sites that are accessible only over the Tor network, and as such provide a high level of annonymity.</p>
+            <p>This isn't intended to be an explanation of what Tor is or how it works, but take a look at <a href='https://2019.www.torproject.org/about/overview.html.en' target='_blank' rel='noopener noreferrer' >their website</a> for more info. <a href='https://2019.www.torproject.org/docs/onion-services' target='_blank' rel='noopener noreferrer' >Hidden services</a>, (now known as onion services) are sites that are accessible only over the Tor network, and as such provide some level of anonymity.</p>
 
             <h2>Setting up the hardware</h2>
             <p>I'm using a Huawei/Google Nexus 6P (development name angler). This is still a good phone! Mine happened to develop a hardware fault out of warranty which forced me to replace it, but the specs are still pretty solid, and it can certainly handle the very occasional request as a server. Since it's a phone it's got a nice low power usage, and is pretty comfortable running for weeks on end. </p>
